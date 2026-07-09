@@ -48,6 +48,8 @@ func RunConsumer(ctx context.Context, config Config) error {
 			feed = NewKubeConFeed("kubecon", logger, config.DB)
 		case "kubecon-party":
 			feed = NewKubeConPartyFeed("kubecon-party", logger, config.DB)
+		case "emf-camp":
+			feed = NewEMFCampFeed("emf-camp", logger, config.DB)
 		}
 		return &feed
 	}
