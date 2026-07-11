@@ -15,6 +15,14 @@ db:
 feed_names:
 - composer-errors
 - english-text
+# If you weant to set up a feed that just watches for words/hashtags/accounts
+# without any complex logic then use simple_feeds
+simple_feeds:
+  - name: emf-camp
+    hashtags: ["EMFCamp", "EMF2026", "EMF26"]
+    account_dids: ["did:plc:r5tbkz2suj4hz6kyadj73y6n"]
+    regex: "(?mi)(^|\\s|#)(EMF ?Camp)(\\d{2,4})?(\\W|$)"
+    include_year: true
 log_level: INFO
 log_format: json
 consumer:

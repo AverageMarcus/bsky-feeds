@@ -16,12 +16,12 @@ type Config struct {
 		Engine           string `mapstructure:"engine"`
 		ConnectionString string `mapstructure:"connection_string"`
 	} `mapstructure:"db"`
-	FeedNames []string `mapstructure:"feed_names"`
-	FeedName  string   `mapstructure:"feed_name"`
-	LogLevel  string   `mapstructure:"log_level"`
-	LogFormat string   `mapstructure:"log_format"`
-	LogStats  bool     `mapstructure:"log_stats"`
-	Consumer  struct {
+	FeedNames   []string                    `mapstructure:"feed_names"`
+	SimpleFeeds []consumer.SimpleFeedConfig `mapstructure:"simple_feeds"`
+	LogLevel    string                      `mapstructure:"log_level"`
+	LogFormat   string                      `mapstructure:"log_format"`
+	LogStats    bool                        `mapstructure:"log_stats"`
+	Consumer    struct {
 		Enabled      bool   `mapstructure:"enabled"`
 		JetstreamURL string `mapstructure:"jetstream_url"`
 		StartCursor  int64  `mapstructure:"start_cursor"`

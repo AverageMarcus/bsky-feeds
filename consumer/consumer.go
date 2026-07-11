@@ -26,6 +26,7 @@ type Config struct {
 	DB           *sql.DB
 	Stats        bool
 	FeedNames    []string
+	SimpleFeeds  []SimpleFeedConfig
 }
 
 type Feed interface {
@@ -60,6 +61,10 @@ func RunConsumer(ctx context.Context, config Config) error {
 		if feed != nil {
 			enabledFeeds = append(enabledFeeds, *feed)
 		}
+	}
+	// Setup all simple feeds
+	for _, sf := range config.SimpleFeeds {
+		enabledFeeds = append(enabledFeeds, NewSimpleFeed(sf, logger, config.DB))
 	}
 
 	handler := handler{

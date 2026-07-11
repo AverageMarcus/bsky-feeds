@@ -73,6 +73,7 @@ func Run(config confpkg.Config) error {
 			DB:           db,
 			Stats:        config.LogStats,
 			FeedNames:    config.FeedNames,
+			SimpleFeeds:  config.SimpleFeeds,
 		}
 		wg.Add(1)
 		go func() {
@@ -85,11 +86,16 @@ func Run(config confpkg.Config) error {
 	}
 
 	if config.Feedgen.Enabled {
+		feedNames := config.FeedNames
+		for _, sf := range config.SimpleFeeds {
+			feedNames = append(feedNames, sf.Name)
+		}
+
 		feedgenConfig := feedgen.Config{
 			FeedActorDID:    config.Feedgen.FeedActorDID,
 			ServiceEndpoint: config.Feedgen.ServiceEndpoint,
 			Port:            config.Feedgen.Port,
-			FeedNames:       config.FeedNames,
+			FeedNames:       feedNames,
 			DB:              db,
 		}
 		wg.Add(1)
