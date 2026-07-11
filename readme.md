@@ -46,6 +46,8 @@ feedgen:
   service_endpoint: https://replace-me-with-your-service-endpoint.example.com
 ```
 
+## Running
+
 Run with:
 
 ```shell
@@ -59,3 +61,25 @@ The following URLs will then be available:
 
 Then for each feed enabled there will be an URL such as:
 * http://localhost:9072/xrpc/app.bsky.feed.getFeedSkeleton?feed=at://did:plc:replace-me-with-your-did/app.bsky.feed.generator/english-text
+
+## Adding a Feed to Your Profile
+
+I recommend using the CLI from [bluesky-social/feed-generator](https://github.com/bluesky-social/feed-generator) to add the feed to your profile.
+
+
+1. Checkout: <https://github.com/bluesky-social/feed-generator>
+2. `yarn install`
+3. Create a `.env` file with the following contents:
+
+   ```bash
+   FEEDGEN_HOSTNAME="The hostname you are hosting the generated feeds on"
+   FEEDGEN_PUBLISHER_DID="Your accounts DID"
+   FEEDGEN_SUBSCRIPTION_ENDPOINT="wss://bsky.network"
+   FEEDGEN_SUBSCRIPTION_RECONNECT_DELAY=3000
+   ```
+4. `yarn publishFeed` and answer the questions
+
+**Notes:**
+
+* The “short name” is the name of the feed you specified in the config
+* For the “avatar” you provide a path to a file on local disk.
