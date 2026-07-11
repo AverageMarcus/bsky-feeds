@@ -2,7 +2,17 @@
 
 Glues together [Jetstream](https://github.com/bluesky-social/jetstream) and [go-bsky-feed-generator](https://github.com/ericvolp12/go-bsky-feed-generator/) with some SQLite to consume the Bluesky firehose and serve a feed based on posts matching some criteria.
 
-Currently (11/24) in use serving [this feed](https://bsky.app/profile/roland.cros.by/feed/composer-errors), which detects when someone types a domain by accident, fixes it, and inadvertently leaves the link attachment.
+This was forked from [rolandcrosby/jetstream-feed-generator](https://github.com/rolandcrosby/jetstream-feed-generator) (huge thank you to rolandcrosby!) and expanded with the following features:
+* Supports running multiple feeds
+* Added support for using PostgreSQL as well as SQLite
+* Handled retries on some error conditions
+* Dynamically create feeds based on the provided config
+* Implemented a generic "SimpleFeed" that can dynamically create feeds from config
+
+At time of writing, this is currently being used to power the following feeds:
+* [KubeCon & Related Events](https://bsky.app/profile/did:plc:mtepw4cvbmdvu7zygmm5xbop/feed/kubecon)
+* [KubeCon Parties](https://bsky.app/profile/did:plc:mtepw4cvbmdvu7zygmm5xbop/feed/kubecon-party)
+* [EMF Camp](https://bsky.app/profile/did:plc:mtepw4cvbmdvu7zygmm5xbop/feed/emf-camp)
 
 ---
 
